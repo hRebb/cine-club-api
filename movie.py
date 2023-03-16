@@ -5,6 +5,14 @@ import logging
 CUR_DIR = os.path.dirname(__file__)
 DATA_FILE = os.path.join(CUR_DIR, "data", "movies.json")
 
+def get_movies():
+    movies = []
+    with open(DATA_FILE, "r") as f:
+        movies_title = json.load(f)
+
+    movies = [Movie(movie_title)for movie_title in movies_title]
+    return movies
+
 class Movie:
     def __init__(self, title) -> str:
         self.title = title.title()
@@ -44,6 +52,7 @@ class Movie:
             logging.warning(f"{self.title} n'est pas dans la liste de films")
             return False
 
+
 if __name__ == "__main__":
-    m = Movie("Harry Potter")
-    m.remove_from_movies()
+    movies = get_movies()
+    print(movies)
