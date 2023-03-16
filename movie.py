@@ -32,9 +32,18 @@ class Movie:
         else:
             logging.warning(f"{self.title} est déjà dans la liste de films.")
             return False
+        
+    def remove_from_movies(self):
+        movies = self._get_movies(self)
+        if self.title in movies:
+            movies.remove(self.title)
+            self._write_movies(movies)
+            print(logging.info(f"{self.title} a été retiré de la liste de films."))
+            return True
+        else:
+            logging.warning(f"{self.title} n'est pas dans la liste de films")
+            return False
 
 if __name__ == "__main__":
     m = Movie("Harry Potter")
-    # print(m._write_movies(["Alice in wonderland", "Mary Poppins"]))
-    # print(m)
-    m.add_to_movies()
+    m.remove_from_movies()
