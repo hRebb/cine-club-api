@@ -22,12 +22,12 @@ class Movie:
         with open(DATA_FILE, 'w') as f:
             json.dump(movies, f, indent=4)
 
-    @classmethod
-    def add_to_movies(cls, title):
-        movies = cls._get_movies()
+
+    def add_to_movies(self, title):
+        movies = self._get_movies()
         if title.title() not in movies:
             movies.append(title.title())
-            cls._write_movies(movies)
+            self._write_movies(movies)
             logging.info(f"{title} a été ajouté dans la liste des films.")
         else:
             logging.info(f"{title} est déjà dans la liste de films.")
