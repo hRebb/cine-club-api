@@ -23,17 +23,18 @@ class Movie:
             json.dump(movies, f, indent=4)
 
 
-    def add_to_movies(self, title):
-        movies = self._get_movies()
-        if title.title() not in movies:
-            movies.append(title.title())
+    def add_to_movies(self):
+        movies = self._get_movies(self)
+        if self.title not in movies:
+            movies.append(self.title)
             self._write_movies(movies)
-            logging.info(f"{title} a été ajouté dans la liste des films.")
+            return True
         else:
-            logging.info(f"{title} est déjà dans la liste de films.")
+            logging.warning(f"{self.title} est déjà dans la liste de films.")
+            return False
 
 if __name__ == "__main__":
-    m = Movie("Le seigneur des anneaux")
+    m = Movie("Harry Potter")
     # print(m._write_movies(["Alice in wonderland", "Mary Poppins"]))
     # print(m)
-    # m.add_to_movies()
+    m.add_to_movies()
