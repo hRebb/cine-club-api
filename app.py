@@ -6,6 +6,7 @@ class App(QtWidgets.QWidget):
         super(App, self).__init__()
         self.setup_ui()
         self.populate_movies()
+        self.setup_connections()
 
     def setup_ui(self):
         self.layout = QtWidgets.QVBoxLayout(self)
@@ -20,10 +21,21 @@ class App(QtWidgets.QWidget):
         self.layout.addWidget(self.list_widget)
         self.layout.addWidget(self.rm_button)
 
+    def setup_connections(self):
+        self.add_button.clicked.connect(self.add_movie)
+        self.lineEdit.returnPressed.connect(self.add_movie)
+        self.rm_button.clicked.connect(self.remove_movie)
+
     def populate_movies(self):
         self.movies = get_movies()
         for movie in self.movies:
             self.list_widget.addItem(movie.title)
+
+    def add_movie(self):
+        print("Adding movies")
+
+    def remove_movie(self):
+        print("Removing movies")
 
 app = QtWidgets.QApplication([])
 
