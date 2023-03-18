@@ -17,7 +17,7 @@ To use this GUI, follow these steps:
 3. Run the `main.py` file using the following command:
 
     ```
-    python main.py
+    python app.py
     ```
 
 ## Using the GUI
