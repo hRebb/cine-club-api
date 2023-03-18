@@ -1,5 +1,5 @@
 from PySide2 import QtWidgets
-from movie import get_movies
+from movie import get_movies, Movie
 
 class App(QtWidgets.QWidget):
     def __init__(self):
@@ -32,7 +32,19 @@ class App(QtWidgets.QWidget):
             self.list_widget.addItem(movie.title)
 
     def add_movie(self):
-        print("Adding movies")
+        movie_title = self.lineEdit.text().strip()
+
+        if not movie_title:
+            return False
+        
+        movie = Movie(movie_title)
+        result = movie.add_to_movies()
+
+        if not result:
+            return False
+        else:
+            self.list_widget.addItem(movie.title)
+            self.lineEdit.clear()
 
     def remove_movie(self):
         print("Removing movies")
