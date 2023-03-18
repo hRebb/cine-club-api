@@ -46,7 +46,6 @@ class Movie:
         if self.title in movies:
             movies.remove(self.title)
             self._write_movies(movies)
-            print(logging.info(f"{self.title} a été retiré de la liste de films."))
             return True
         else:
             logging.warning(f"{self.title} n'est pas dans la liste de films")
