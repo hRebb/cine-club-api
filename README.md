@@ -14,7 +14,7 @@ To use this GUI, follow these steps:
     pip install PySide2
     ```
 
-3. Run the `main.py` file using the following command:
+3. Run the `app.py` file using the following command:
 
     ```
     python app.py
