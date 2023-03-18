@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets, QtCore
 from movie import get_movies, Movie
 
 class App(QtWidgets.QWidget):
@@ -14,6 +14,7 @@ class App(QtWidgets.QWidget):
         self.lineEdit = QtWidgets.QLineEdit(self)
         self.add_button = QtWidgets.QPushButton("Add")
         self.list_widget = QtWidgets.QListWidget(self)
+        self.list_widget.setSelectionMode(QtWidgets.QListWidget.ExtendedSelection)
         self.rm_button = QtWidgets.QPushButton("Remove")
 
         self.layout.addWidget(self.lineEdit)
@@ -44,10 +45,20 @@ class App(QtWidgets.QWidget):
             return False
         else:
             self.list_widget.addItem(movie.title)
-            self.lineEdit.clear()
+        
+        self.lineEdit.setText("")
 
     def remove_movie(self):
-        print("Removing movies")
+        selected_items = self.list_widget.selectedItems()
+
+        for item in selected_items:
+            movie_title = item.text()
+            movie = Movie(movie_title)
+
+            result = movie.remove_from_movies()
+
+            if result:
+                self.list_widget.takeItem(self.list_widget.row(item))
 
 app = QtWidgets.QApplication([])
 
