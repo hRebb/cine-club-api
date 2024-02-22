@@ -1,9 +1,9 @@
-from PySide2 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore
 from movie import get_movies, Movie
 
 class App(QtWidgets.QWidget):
     def __init__(self):
-        super(App, self).__init__()
+        super().__init__()
         self.setup_ui()
         self.populate_movies()
         self.setup_connections()
@@ -46,7 +46,7 @@ class App(QtWidgets.QWidget):
         else:
             self.list_widget.addItem(movie.title)
         
-        self.lineEdit.setText("")
+        self.lineEdit.clear()
 
     def remove_movie(self):
         selected_items = self.list_widget.selectedItems()
